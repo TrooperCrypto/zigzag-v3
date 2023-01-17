@@ -164,6 +164,31 @@ You can fill orders by submitting them on-chain.
 
 Our current contract address is viewable in our [config](EVMConfig.json) and you can view the code on [Arbiscan](https://arbiscan.io/address/0x094cAb67fBB074b7797AB0975c69A341b7A40641#code).
 
-To submit an order, we recommend you use the `fillOrderExactInput` and `fillOrderExactOutput` functions. 
+To submit an order, we recommend you use the `fillOrderExactInput` and `fillOrderExactOutput` functions. The function signatures look as follows. The order and signature data is available via `GET /v1/orders`.
+
+```
+// @notice Fills an order with an exact amount to sell
+// @param makerOrder Order that will be used to make this swap
+// @param makerSignature  Signature for the order used
+// @param takerSellAmount amount send from the sender to the maker
+// @return returns true if successfull
+function fillOrderExactInput( LibOrder.Order calldata makerOrder, bytes calldata makerSignature, uint takerSellAmount, bool fillAvailable) public returns (bool);
+
+/// @notice Fills an order with an exact amount to buy
+/// @param makerOrder Order that will be used to make this swap
+/// @param makerSignature  Signature for the order used
+/// @param takerBuyAmount amount send to the sender from the maker
+/// @param fillAvailable Should the maximum buyAmount possible be used
+/// @return returns true if successfull
+function fillOrderExactOutput( LibOrder.Order calldata makerOrder, bytes calldata makerSignature, uint takerBuyAmount, bool fillAvailable) public returns (bool);
+```
+
+The above functions work for all ERC-20 tokens. If you want to send ETH as your input or receive ETH as your output, use the following similar functions instead. 
+
+```
+function fillOrderExactInputETH( LibOrder.Order calldata makerOrder, bytes calldata makerSignature, uint takerSellAmount, bool fillAvailable) public payable returns (bool);
+
+function fillOrderExactOutputETH( LibOrder.Order calldata makerOrder, bytes calldata makerSignature, uint takerBuyAmount, bool fillAvailable) public payable returns (bool);
+```
 
 Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any helping building your bot. 
