@@ -191,4 +191,4 @@ function fillOrderExactInputETH( LibOrder.Order calldata makerOrder, bytes calld
 function fillOrderExactOutputETH( LibOrder.Order calldata makerOrder, bytes calldata makerSignature, uint takerBuyAmount, bool fillAvailable) public payable returns (bool);
 ```
 
-Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any helping building your bot. 
+Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any help building your bot. 
