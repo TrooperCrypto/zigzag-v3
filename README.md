@@ -164,6 +164,6 @@ You can fill orders by submitting them on-chain.
 
 Our current contract address is viewable in our [config](EVMConfig.json) and you can view the code on [Arbiscan](https://arbiscan.io/address/0x094cAb67fBB074b7797AB0975c69A341b7A40641#code).
 
-To submit an order, we recommend you use the `fillOrderExactInput` and `fillOrderExactOutput` functions. 
+To submit an order, we recommend using the `fillOrderExactInput` and `fillOrderExactOutput` functions. 
 
-Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any helping building your bot. 
+Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any help building your bot. 
