@@ -2,11 +2,12 @@
 
 Base URL: https://api.arbitrum.zigzag.exchange
 
-## Endpoints
+## Table of Contents
 
 * [GET /v1/info](#market-info)
 * [GET /v1/orders](#get-orders)
 * [POST /v1/order](#submit-order)
+* [Filling Orders](#filling-orders)
 
 ## Market Info
 
@@ -156,3 +157,13 @@ Content-Type: application/json
 
 { hash: "0x7bcad1ceab2751cf380fd000facd079682f95b70a93c1bfbf7230a76fd8eacfc" }
 ```
+
+## Filling Orders
+
+You can fill orders by submitting them on-chain. 
+
+Our current contract address is viewable in our [config](EVMConfig.json) and you can view the code on [Arbiscan](https://arbiscan.io/address/0x094cAb67fBB074b7797AB0975c69A341b7A40641#code).
+
+To submit an order, we recommend you use the `fillOrderExactInput` and `fillOrderExactOutput` functions. Examples on exact usage are coming soon, but in the meantime, you can hit us up on [Discord](https://discord.gg/zigzag) if you need any helping building your bot. 
+
+
