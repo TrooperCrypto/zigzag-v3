@@ -91,7 +91,7 @@ export default function orderRoutes(app: ZZHttpServer) {
     if (!req.query.buyToken) return next('Missing query arg buyToken')
     if (!req.query.sellToken) return next('Missing query arg sellToken')
     if (!maxExpires) maxExpires = now + 60;
-    if (!minExpires) minExpires = now + 3;
+    if (!minExpires) minExpires = now + 1;
     if (Number(maxExpires) > now * 2) return next(`Max value of maxExpires is ${now * 2}`);
     if (Number(maxExpires) < now) return next(`Min value of maxExpires is ${now}`);
     if (Number(minExpires) > now * 2) return next(`Max value of minExpires is ${now * 2}`);
@@ -99,8 +99,8 @@ export default function orderRoutes(app: ZZHttpServer) {
     maxExpires = Number(maxExpires)
     minExpires = Number(minExpires)
 
-    let buyTokens: string[] = (req.query.buyToken as string).split(',');
-    let sellTokens: string[] = (req.query.sellToken as string).split(',');
+    let buyTokens: string[] = (req.query.buyToken as string).split(',').map(t => t.toLowerCase());
+    let sellTokens: string[] = (req.query.sellToken as string).split(',').map(t => t.toLowerCase());
 
     const values = [buyTokens, sellTokens, minExpires, maxExpires]
     let select;
