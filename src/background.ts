@@ -2,8 +2,7 @@ import fs from 'fs'
 import { ethers } from 'ethers'
 import { db, runDbMigration, removeExpiredOrders } from './db'
 
-/*
-async function updateOrderFilled(orderHash: string, makerSellAmount: string, ) {
+async function updateOrderFilled(orderHash: string, filled: string, ) {
   await db.query(`
     UPDATE
       orders
@@ -12,10 +11,9 @@ async function updateOrderFilled(orderHash: string, makerSellAmount: string, ) {
     WHERE
       hash = $2
     ;`,
-    [makerSellAmount, orderHash]
+    [orderHash, orderHash]
   )
 }
-*/
 
 async function updateOrderCanceled(orderHash: string) {
   console.log(`Order canceld. orderHash: ${orderHash}`)
@@ -30,30 +28,22 @@ async function updateOrderCanceled(orderHash: string) {
 }
 
 async function startListeners(contract: ethers.Contract) {
-  /*
   contract.on(
-    'Swap',
+    'OrderStatus',
     (
-      maker: string,
-      makerOrderHash: string,
-      taker: string,
-      makerSellToken: string,
-      takerSellToken: string,
-      makerSellAmount: ethers.BigNumber,
-      takerSellAmount: ethers.BigNumber,
-      makerVolumeFee: ethers.BigNumber,
-      takerVolumeFee: ethers.BigNumber,
+      orderHash: string,
+      filled: ethers.BigNumber,
+      remaining: ethers.BigNumber,
       blockData: any
     ) => {
-      console.log(`New swap! maker: ${maker}, makerSellToken: ${makerSellToken}, makerBuyToken: ${takerSellToken}, makerSellAmount: ${makerSellAmount}, makerBuyAmount: ${takerSellAmount}`)
-      updateOrderFilled(makerOrderHash, makerSellAmount, takerSellAmount)
+      console.log(`New swap! orderHash: ${orderHash}, filled: ${filled}, remaining: ${remaining}`)
+      updateOrderFilled(orderHash, filled.toString())
         .catch((err: any) => {
-          console.log(`Failed to handle 'Swap' ${err}`)
+          console.log(`Failed to handle 'OrderStatus' ${err}`)
           console.log(err)
         })
     }
   )
-  */
 
   contract.on(
     'CancelOrder',
