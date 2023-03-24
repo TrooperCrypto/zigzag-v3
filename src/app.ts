@@ -9,6 +9,7 @@ import express from 'express'
 import { createServer } from 'http'
 import infoRoutes from './routes/info'
 import orderRoutes from './routes/order'
+import userRoutes from './routes/user'
 
 const expressApp = express()
 const server = createServer(expressApp)
@@ -36,6 +37,7 @@ expressApp.use((req, res, next) => {
 // Register routes
 orderRoutes(expressApp)
 infoRoutes(expressApp)
+userRoutes(expressApp)
 
 // Universal error handler
 expressApp.use((err, req, res, next) => {
