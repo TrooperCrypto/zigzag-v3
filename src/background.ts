@@ -11,7 +11,7 @@ async function updateOrderFilled(orderHash: string, filled: string, ) {
     WHERE
       hash = $2
     ;`,
-    [orderHash, orderHash]
+    [filled, orderHash]
   )
 }
 
