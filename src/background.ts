@@ -3,6 +3,7 @@ import { ethers } from 'ethers'
 import { db, runDbMigration, removeExpiredOrders } from './db'
 
 async function updateOrderFilled(orderHash: string, filled: string, ) {
+  console.log(`New swap! orderHash: ${orderHash}, filled: ${filled}`)
   await db.query(`
     UPDATE
       orders
@@ -11,7 +12,7 @@ async function updateOrderFilled(orderHash: string, filled: string, ) {
     WHERE
       hash = $2
     ;`,
-    [orderHash, orderHash]
+    [filled, orderHash.toLowerCase()]
   )
 }
 
@@ -23,7 +24,7 @@ async function updateOrderCanceled(orderHash: string) {
     WHERE
       hash = $1
     ;`,
-    [orderHash]
+    [orderHash.toLowerCase()]
   )
 }
 
@@ -36,7 +37,6 @@ async function startListeners(contract: ethers.Contract) {
       remaining: ethers.BigNumber,
       blockData: any
     ) => {
-      console.log(`New swap! orderHash: ${orderHash}, filled: ${filled}, remaining: ${remaining}`)
       updateOrderFilled(orderHash, filled.toString())
         .catch((err: any) => {
           console.log(`Failed to handle 'OrderStatus' ${err}`)
@@ -57,7 +57,9 @@ async function startListeners(contract: ethers.Contract) {
           console.log(err)
         })
     }
-  )  
+  )
+  
+  console.log('background.ts: Started listeners')
 }
 
 async function start() {

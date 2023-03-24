@@ -63,7 +63,7 @@ export default function orderRoutes(app: ZZHttpServer) {
 
     // store in DB
     const values: any[] = [
-      orderHash,
+      orderHash.toLowerCase(),
       zzOrder.user,
       zzOrder.buyToken,
       zzOrder.sellToken,
