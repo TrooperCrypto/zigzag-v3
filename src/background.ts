@@ -57,7 +57,9 @@ async function startListeners(contract: ethers.Contract) {
           console.log(err)
         })
     }
-  )  
+  )
+  
+  console.log('background.ts: Started listeners')
 }
 
 async function start() {
