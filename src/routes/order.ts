@@ -19,6 +19,7 @@ export default function orderRoutes(app: ZZHttpServer) {
     let signer: string = req.body.signer || req.body.order.user
 
     // parse incomming data to lower case
+    zzOrder.user = zzOrder.user.toLowerCase()
     zzOrder.sellToken = zzOrder.sellToken.toLowerCase()
     zzOrder.buyToken = zzOrder.buyToken.toLowerCase()
     signer = signer.toLowerCase()
