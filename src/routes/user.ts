@@ -10,8 +10,24 @@ export default function orderRoutes(app: ZZHttpServer) {
     let select;
     try {
       select = await db.query(
-        `SELECT hash, user_address, buy_token, sell_token, CAST(buy_amount AS TEXT) AS buyamount, CAST(sell_amount AS TEXT) AS sellamount, expires, sig 
-         FROM orders WHERE user_address=$1 AND expires >= $2`,
+        `SELECT 
+          hash,
+          user_address,
+          buy_token,
+          sell_token,
+          CAST(buy_amount AS TEXT) AS buyamount,
+          CAST(sell_amount AS TEXT) AS sellamount,
+          CAST(filled AS TEXT) AS filledamount,
+          expires,
+          sig 
+        FROM 
+          orders 
+        WHERE 
+          buy_token=ANY($1) AND 
+          sell_token= ANY($2) AND 
+          expires >= $3 AND 
+          expires <= $4
+        ;`,
         values
       )
     } catch (e: any) {
@@ -27,6 +43,7 @@ export default function orderRoutes(app: ZZHttpServer) {
         sellToken: row.sell_token,
         buyAmount: row.buyamount,
         sellAmount: row.sellamount,
+        fillAmount: row.filledamount,
         expirationTimeSeconds: row.expires.toString(),
       },
       signature: row.sig,
