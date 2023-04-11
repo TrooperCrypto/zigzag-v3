@@ -89,10 +89,11 @@ async function fetchNewLogs(
         data: log.data,
       })
 
-      if (parsedData.name === 'OrderStatus') {
+      if (parsedData.name === 'CancelOrder') {
         const [orderHash] = parsedData.args as [string]
         await updateOrderCanceled(orderHash)
-      } else if (parsedData.name === 'CancelOrder') {
+        console.log(`${chainId}:${orderHash} canceld`)
+      } else if (parsedData.name === 'OrderStatus') {
         const [orderHash, filled, remaining] = parsedData.args as [
           string,
           ethers.BigNumber,
@@ -100,6 +101,7 @@ async function fetchNewLogs(
         ]
 
         await updateOrderFilled(orderHash, filled.toString())
+        console.log(`${chainId}:${orderHash} filled`)
       }
     } catch (err: any) {
       throw new Error(`Error handling new logs for ${chainId} - ${err}`)
