@@ -5,14 +5,12 @@
     "RPC": "https://arb1.arbitrum.io/rpc"
   },  
   "onChainSettings": {
-    "exchangeAddress": "0x094cAb67fBB074b7797AB0975c69A341b7A40641",
-    "makerVolumeFee": 0.00,
-    "takerVolumeFee": 0.0005,
+    "exchangeAddress": "0x6fCdBD2Aa4cBd9d01741EFC152a7fFB833dd9A47",
     "domain": {
       "name": "ZigZag",
       "version": "2.1",
       "chainId": "42161",
-      "verifyingContract": "0x094cAb67fBB074b7797AB0975c69A341b7A40641"
+      "verifyingContract": "0x6fCdBD2Aa4cBd9d01741EFC152a7fFB833dd9A47"
     },
     "types": {
       "Order": [

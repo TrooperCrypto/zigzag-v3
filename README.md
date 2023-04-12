@@ -43,8 +43,6 @@ Base URL: https://api.arbitrum.zigzag.exchange
   ],
   "exchange": {
     "exchangeAddress": "0x20e7FCC377CB96805c6Ae8dDE7BB302b344dc42f",
-    "makerVolumeFee": 0,
-    "takerVolumeFee": 0.0005,
     "domain": {
       "name": "ZigZag",
       "version": "2.1",
