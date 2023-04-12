@@ -26,3 +26,13 @@ export type ZZOrder = {
   buyAmount: number
   expirationTimeSeconds: string
 }
+
+export type EventLogs = {
+  logIndex: string
+  transactionHash: string
+  address: string
+  data: string
+  topics: string[]
+  blockNumber: string
+  removed: boolean
+}
