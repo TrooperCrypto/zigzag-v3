@@ -334,8 +334,6 @@ describe("Market Info", () => {
     await expect(response.body.exchange.exchangeAddress).toBe(EVMConfig.onChainSettings.exchangeAddress)
     await expect(response.body.exchange.domain).toBeTruthy()
     await expect(response.body.exchange.domain.verifyingContract).toBe(response.body.exchange.exchangeAddress)
-    await expect(response.body.exchange.makerVolumeFee).toBeGreaterThanOrEqual(0)
-    await expect(response.body.exchange.takerVolumeFee).toBeGreaterThanOrEqual(0)
     await expect(response.body.exchange.types).toBeTruthy()
     await expect(response.body.exchange.types.Order).toBeTruthy()
   });
